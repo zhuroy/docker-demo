@@ -1,5 +1,4 @@
-node {
-   label('jenkins_master')
+node("jenkins_master") {
    def commit_id
    stage('Preparation') {
      checkout scm
