@@ -1,5 +1,5 @@
 node {
-   agent 'jenkins_master'
+   label('jenkins_master')
    def commit_id
    stage('Preparation') {
      checkout scm
