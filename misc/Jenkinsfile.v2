@@ -6,14 +6,15 @@ node("jenkins_master") {
      commit_id = readFile('.git/commit-id').trim()
    }
    stage('test') {
-     def myTestContainer = docker.image('node:4.6').withRun('-u root') {
-     //myTestContainer.pull()
-     //myTestContainer.inside {
+     def myTestContainer = docker.image('node:4.6')
+     myTestContainer.pull()
+     myTestContainer.inside {
        sh 'pwd'
        sh 'ls -l'
        /* sh 'sudo chown -R 123:131 /var/empty/.npm' */
        sh 'ls -l /var/'
        sh 'cat /etc/hosts'
+       sh 'whoami'
        sh 'npm install --only=dev'
        sh 'npm test'
      }
