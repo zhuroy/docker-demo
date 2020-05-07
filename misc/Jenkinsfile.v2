@@ -12,7 +12,7 @@ node("jenkins_master") {
        sh 'pwd'
        sh 'ls -l'
        /* sh 'sudo chown -R 123:131 /var/empty/.npm' */
-       sh 'ls -l /var/empty/.npm'
+       sh 'ls -l /var/empty/'
        sh 'cat /etc/hosts'
        sh 'npm install --only=dev'
        sh 'npm test'
