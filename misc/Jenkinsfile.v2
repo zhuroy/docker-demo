@@ -9,6 +9,8 @@ node("jenkins_master") {
      def myTestContainer = docker.image('node:12-alpine')
      myTestContainer.pull()
      myTestContainer.inside {
+       sh 'pwd'
+       sh 'ls -l'
        sh 'npm install'
        sh 'npm test'
      }
