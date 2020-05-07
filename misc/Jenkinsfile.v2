@@ -6,18 +6,19 @@ node("jenkins_master") {
      commit_id = readFile('.git/commit-id').trim()
    }
    stage('test') {
-     def myTestContainer = docker.image('node:12-alpine')
+     def myTestContainer = docker.image('node:4.6')
      myTestContainer.pull()
      myTestContainer.inside {
        sh 'pwd'
        sh 'ls -l'
-       sh 'npm install'
+       sh 'sudo chown -R 123:131 "/var/empty/.npm'
+       sh 'npm install --only=dev'
        sh 'npm test'
      }
    }
    stage('test with a DB') {
      def mysql = docker.image('mysql').run("-e MYSQL_ALLOW_EMPTY_PASSWORD=yes") 
-     def myTestContainer = docker.image('node:4.6-alpine')
+     def myTestContainer = docker.image('node:4.6')
      myTestContainer.pull()
      myTestContainer.inside("--link ${mysql.id}:mysql") { // using linking, mysql will be available at host: mysql, port: 3306
           sh 'npm install --only=dev' 
