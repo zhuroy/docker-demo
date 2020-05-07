@@ -8,7 +8,7 @@ node("jenkins_master") {
    stage('test') {
      def myTestContainer = docker.image('node:4.6')
      myTestContainer.pull()
-     myTestContainer.inside {
+     myTestContainer.withRun('-u root') {
        sh 'pwd'
        sh 'ls -l'
        /* sh 'sudo chown -R 123:131 /var/empty/.npm' */
