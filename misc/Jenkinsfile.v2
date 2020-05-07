@@ -25,7 +25,7 @@ node("jenkins_master") {
      myTestContainer.pull()
      myTestContainer.inside("--link ${mysql.id}:mysql") { // using linking, mysql will be available at host: mysql, port: 3306
           sh 'HOME=$PWD npm install --only=dev' 
-          sh 'npm test'                     
+          sh 'HOME=$PWD npm test'                     
      }                                   
      mysql.stop()
    }                                     
