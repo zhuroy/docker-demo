@@ -11,7 +11,9 @@ node("jenkins_master") {
      myTestContainer.inside {
        sh 'pwd'
        sh 'ls -l'
-       sh 'sudo chown -R 123:131 /var/empty/.npm'
+       /* sh 'sudo chown -R 123:131 /var/empty/.npm' */
+       sh 'ls -l /var/empty/.npm'
+       sh 'cat /etc/hosts'
        sh 'npm install --only=dev'
        sh 'npm test'
      }
