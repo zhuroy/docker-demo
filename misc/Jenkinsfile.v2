@@ -6,7 +6,7 @@ node("jenkins_master") {
      commit_id = readFile('.git/commit-id').trim()
    }
    stage('test') {
-     def myTestContainer = docker.image('node:4.6')
+     def myTestContainer = docker.image('node:8.17')
      myTestContainer.pull()
      myTestContainer.inside {
        sh 'pwd'
@@ -15,7 +15,7 @@ node("jenkins_master") {
        sh 'ls -l /var/'
        sh 'cat /etc/hosts'
        //sh 'whoami'
-       sh 'npm install --only=dev'
+       sh 'HOME=$PWD npm install --only=dev'
        sh 'npm test'
      }
    }
