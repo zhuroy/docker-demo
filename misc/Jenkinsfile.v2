@@ -14,7 +14,7 @@ node("jenkins_master") {
        /* sh 'sudo chown -R 123:131 /var/empty/.npm' */
        sh 'ls -l /var/'
        sh 'cat /etc/hosts'
-       sh 'whoami'
+       //sh 'whoami'
        sh 'npm install --only=dev'
        sh 'npm test'
      }
